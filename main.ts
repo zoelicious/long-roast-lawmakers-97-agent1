@@ -1,12 +1,14 @@
-import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+// Agent 1 — Kompetisi 97 "The Long Roast: Lawmakers and the File They Cannot Convert"
+// Entry 1/3 (turnamen juara 2). Menulis satu kalimat roast ke /output/entry.txt.
+import { writeFileSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 
-const here = dirname(fileURLToPath(import.meta.url));
+// Satu kalimat roast final — JANGAN ubah string ini (byte-identik dengan teks turnamen).
+const roastSentence = "They wrote the law that moved every ballot online and made paper voting a crime, but the certified results are still stuck in a Word file that crashes whenever anyone in the building clicks Export to PDF.";
+
+const scriptDir = dirname(fileURLToPath(import.meta.url));
+void scriptDir; // path absolut tersedia dari import.meta.url; output selalu ke /output.
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
-const entry = "They drafted sweeping laws to tame crypto, banning coins they cannot pronounce and wallets they cannot unlock, yet the whitepaper they wrote about digital money still will not convert to PDF.";
-
-try {
-  mkdirSync(outDir, { recursive: true });
-} catch {}
-writeFileSync(join(outDir, "entry.txt"), entry, "utf8");
+mkdirSync(outDir, { recursive: true });
+writeFileSync(join(outDir, "entry.txt"), roastSentence, "utf8");
